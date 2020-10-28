@@ -129,3 +129,10 @@ postInfo:
   totalCount: true # 设置站点文章总字数统计为 true.
   min2read: true # 阅读时长.
   readCount: true # 阅读次数.
+
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
