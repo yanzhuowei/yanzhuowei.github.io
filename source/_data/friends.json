@@ -1,13 +1,19 @@
 [{
-    "avatar": "https://mfrank2016.github.io/breeze-blog/medias/avatar.jpg",
-    "name": "清风",
+    "avatar": "http://www.ruanyifeng.com/blog/images/person2.jpg",
+    "name": "阮一峰的网络日志",
+    "introduction": "大佬博客",
+    "url": "http://www.ruanyifeng.com/blog/",
+    "title": "前去学习"
+},{
+    "avatar": "https://images.cnblogs.com/cnblogs_com/tomxu/tom.jpg",
+    "name": "汤姆大叔的博客",
     "introduction": "技术博主，文章还不错",
-    "url": "https://mfrank2016.github.io/breeze-blog/",
+    "url": "https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html",
     "title": "前去学习"
-}, {
-    "avatar": "https://draveness.me/images/draven-logo.png",
-    "name": "真没什么逻辑",
-    "introduction": "面向信仰编程",
-    "url": "https://draveness.me/",
+},{
+    "avatar": "https://cdn.zhangxinxu.com/wordpress/wp-content/themes/default/images/index_logo.gif",
+    "name": "张鑫旭-鑫空间-鑫生活",
+    "introduction": "张鑫旭的个人博客首页，张鑫旭的技术作品，张鑫旭的生活成长",
+    "url": "https://www.zhangxinxu.com/",
     "title": "前去学习"
-}]
+},]
