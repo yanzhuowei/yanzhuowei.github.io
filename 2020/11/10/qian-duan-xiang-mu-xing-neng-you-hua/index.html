@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="浏览器渲染原理, 编程，前端，生活，阅读，电影，游泳，爬山">
+    <meta name="keywords" content="前端项目性能优化, 编程，前端，生活，阅读，电影，游泳，爬山">
     <meta name="description" content="心中有梦，眼里有光，脚下有路，未来可期，愿深信不疑！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>浏览器渲染原理 | 暮言</title>
+    <title>前端项目性能优化 | 暮言</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">浏览器渲染原理</h1>
+                    <h1 class="description center-align post-title">前端项目性能优化</h1>
                 </div>
             </div>
         </div>
@@ -410,8 +410,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">
-                                <span class="chip bg-color">浏览器渲染原理</span>
+                            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                                <span class="chip bg-color">前端性能优化</span>
                             </a>
                         
                     </div>
@@ -422,8 +422,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" class="post-category">
-                                浏览器
+                            <a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-category">
+                                性能优化
                             </a>
                         
                     </div>
@@ -435,7 +435,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-30
+                    2020-11-10
                 </div>
                 
 
@@ -451,83 +451,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>从一道面试题引起：用户在浏览器地址输入网址到看到页面中间经历了什么？</p>
-<p><img src="/img/liulanqi/1.png"><br>其实中间主要经历了3个阶段：1、HTTP请求阶段 2、HTTP响应阶段 3、浏览器渲染阶段</p>
-<h4 id="进程-Process-和线程-Thread"><a href="#进程-Process-和线程-Thread" class="headerlink" title="进程(Process)和线程(Thread)"></a>进程(Process)和线程(Thread)</h4><p><strong>进程：</strong> <strong>是具有一定独立功能的程序、它是系统进行资源分配和调度的一个独立单位，重点在系统调度和单独的单位，也就是说</strong>进程是可以独立运行的一段程序**。</p>
-<p><strong>线程：</strong> <strong>是进程的一个实体，是CPU调度和分派的基本单位（CPU上真正运行的是线程），程序执行的路径。</strong>。线程自己基本上不拥有系统资源。在运行时，只是暂用一些计数器、寄存器和栈 。</p>
-<p><strong>线程间内存共享：</strong>一个进程的内存空间是共享的，每个线程都可以使用这个共享内存。</p>
-<p><strong>单核CPU执行多任务：</strong>操作系统轮流让各个任务交替执行。例如：任务1执行0.01秒，切换到任务2执行0.01秒，在切换到任务3……由于CPU执行速度过快，我们感知不到感觉像是在同时执行其实不是。</p>
-<p><strong>多核CPU执行多任务：</strong>真正的并行执行多个任务，但是如果任务数量远远多于CPU核心数量，那么操作系统也会自动把多个任务轮流调度到每个核心上执行。</p>
-<p><strong>多线程可以同时执行：</strong>多线程的执行方式和多进程一样，也是由操作系统在多个线程之间快速切换，让每个线程短暂交替运行。</p>
-<h4 id="HTTP请求阶段"><a href="#HTTP请求阶段" class="headerlink" title="HTTP请求阶段"></a>HTTP请求阶段</h4><h5 id="一、URL解析阶段"><a href="#一、URL解析阶段" class="headerlink" title="一、URL解析阶段"></a>一、URL解析阶段</h5><p><strong>URI</strong>：统一资源标识符 （包含URL和URN）；<strong>URL</strong>：统一资源定位符；<strong>URN</strong>：统一资源名称；</p>
-<p><strong>一个完成URL的组成部分和实际意义</strong>（例：<a target="_blank" rel="noopener" href="https://www.baidu.com/index.html%EF%BC%89">https://www.baidu.com:443/index.html）</a></p>
-<ul>
-<li><p>协议：传输协议（http：超文本传输协议，传输文本、二进制码、文件流…；https；ftp:资源上传协议，一般应用于吧本地文件直接上传到服务器端）</p>
-</li>
-<li><p>域名</p>
-</li>
-<li><p>端口号（根据端口号，找到当前服务器上的指定服务；0-65535；不同协议有自己默认端口：http–》80、https–》443、ftp–》21）</p>
-</li>
-<li><p>请求资源和路径名称（/stu/index.html ：一般情况，我们访问的是inde.html是可以省略不写的）</p>
-</li>
-<li><p>？号传参部分 (?xxx=xxx)</p>
-<p>如遇需要进行编码处理方法：</p>
-<p>1、encodeURL / decodeURL (只能把中文和空格编译成编码,一般用来把整个url进行编码)</p>
-<p>2、encodeURLComponent / decodeURLComponent (所有特殊字符都会进行编码，一般不会用来处理整个url,只给传递的参数值进行特殊处理)<br>以上两种客户端和服务器端都支持</p>
-<p>3、escape / unescape (这种方式不一定所有服务器端都支持)</p>
-<p>…</p>
-</li>
-<li><p>哈希 (#xxx)</p>
-<blockquote>
-<p><strong>伪URL</strong></p>
-<p>什么地方会使用伪url？</p>
-<p>1、SEO优化</p>
-<p>2、数据请求的接口地址</p>
-<p>动态页面地址：真实地址</p>
-<p><a target="_blank" rel="noopener" href="https://item.jd.com/detail.php?id=22298647726">https://item.jd.com/detail.php?id=22298647726</a></p>
-<p>需要把上面的地址重写为下面的静态地址需要用到：<strong>URL伪重写技术</strong></p>
-<p><a target="_blank" rel="noopener" href="https://item.jd.com/22298647726.html">https://item.jd.com/22298647726.html</a></p>
-</blockquote>
-</li>
+                <h3 id="网络交互层面的优化"><a href="#网络交互层面的优化" class="headerlink" title="网络交互层面的优化"></a>网络交互层面的优化</h3><h4 id="1、DNS预获取"><a href="#1、DNS预获取" class="headerlink" title="1、DNS预获取"></a>1、DNS预获取</h4><p>在我们网站里面可能会存在很多域名，但是每次请求都进行DNS解析时会浪费一定的时间；所以我们可以做一下优化：DNS预获取（在head先获取）</p>
+<p><img src="/img/liulanqi/6.png"></p>
+<h4 id="2、减少HTTP请求次数和请求资源大小"><a href="#2、减少HTTP请求次数和请求资源大小" class="headerlink" title="2、减少HTTP请求次数和请求资源大小"></a>2、减少HTTP请求次数和请求资源大小</h4><ul>
+<li>减少HTTP请求次数：为了避免并发上线而导致的资源延迟加载，页面渲染速度变慢</li>
+<li>文件合并压缩</li>
+<li>图片base64</li>
+<li>尽量使用字体图标</li>
+<li>图片懒加载</li>
+<li>音视频取消预加载</li>
+<li>在客户端和服务器进行信息交互时，对于多项数据尽量基于JSON格式进行传输</li>
+<li>开启服务端的gzip压缩<br>  BASE64的代码很多，不方便开发维护（慎用）：基于webpack的相关加载器-file-loader可以自动把一些图片BASE64</li>
+<li>使用CDN资源</li>
+<li>前端骨架屏：开启只用默认的占位块 占位(保证结构美观)—开始只加载第一屏数据（图片都是延迟加载），滚动到哪一屏幕，再去加载这一屏幕的数据和图片</li>
+<li>服务器骨架屏：首屏内容都是服务器直接渲染好的（在服务器压力能抗住的情况下，比客户端一步步渲染会快一些）例如：SSR</li>
 </ul>
-<h5 id="二、DNS域名解析"><a href="#二、DNS域名解析" class="headerlink" title="二、DNS域名解析"></a>二、DNS域名解析</h5><p>DNS域名解析是什么？</p>
-<p>通过域名找到对应的服务器外网IP；</p>
-<p>网站，每发送一个TCP请求，都要进行DNS解析（一旦解析过一次，浏览器一般会缓存解析记录，缓存时间一般在1分钟左右）</p>
-<p>DNS解析时访问服务器的顺序：<br><img src="/img/liulanqi/2.png"></p>
-<p>优化手段：DNS预获取<br><img src="/img/liulanqi/3.png"></p>
-<h5 id="三、建立TCP连接（三次握手）"><a href="#三、建立TCP连接（三次握手）" class="headerlink" title="三、建立TCP连接（三次握手）"></a>三、建立TCP连接（三次握手）</h5><p>基于TCP的三次握手，能够建立客户端和服务器的连接通道，只有建立好通道，才能基于HTTP等传输协议，实现客户端和服务器端的信息交互<br><img src="/img/liulanqi/4.png"></p>
-<h5 id="四、发送HTTP请求"><a href="#四、发送HTTP请求" class="headerlink" title="四、发送HTTP请求"></a>四、发送HTTP请求</h5><p>基于HTTP等传输协议，客户端把一些信息传输给服务器</p>
-<ul>
-<li><p>HTTP请求报文（所有客户端传输给服务器的内容，统称请求报文）</p>
-<p>包含：请求起始行、请求头、请求主体</p>
-</li>
-<li><p>强缓存 和 协商缓存 （主要作用是性能优化，减少http请求次数）具体详解，看性能优化文章</p>
-</li>
-</ul>
-<h4 id="HTTP响应阶段"><a href="#HTTP响应阶段" class="headerlink" title="HTTP响应阶段"></a>HTTP响应阶段</h4><h5 id="一、服务器接收请求，并进行处理，最后把信息返回给客户端"><a href="#一、服务器接收请求，并进行处理，最后把信息返回给客户端" class="headerlink" title="一、服务器接收请求，并进行处理，最后把信息返回给客户端"></a>一、服务器接收请求，并进行处理，最后把信息返回给客户端</h5><ul>
-<li>HTTP响应报文 （服务器返回给客户端的内容）<br>包含：响应起始行、响应头、响应主体</li>
-</ul>
-<h5 id="二、断开TCP连接通道（四次挥手）"><a href="#二、断开TCP连接通道（四次挥手）" class="headerlink" title="二、断开TCP连接通道（四次挥手）"></a>二、断开TCP连接通道（四次挥手）</h5><p>** 当客户端把请求放给服务器后，就挥第一次手**<br><img src="/img/liulanqi/5.png"></p>
-<p>优化点：服务端设置 Connection:Keep-Alive 保持TCP不中断</p>
-<h4 id="浏览器渲染阶段"><a href="#浏览器渲染阶段" class="headerlink" title="浏览器渲染阶段"></a>浏览器渲染阶段</h4><p>浏览器是多线程的，页面渲染是单线的；</p>
-<h5 id="一、拿到index-html后浏览器会开辟一块栈内存，同时分配一个主线程“自上而下，自左而右”的去解析执行；"><a href="#一、拿到index-html后浏览器会开辟一块栈内存，同时分配一个主线程“自上而下，自左而右”的去解析执行；" class="headerlink" title="一、拿到index.html后浏览器会开辟一块栈内存，同时分配一个主线程“自上而下，自左而右”的去解析执行；"></a>一、拿到index.html后浏览器会开辟一块栈内存，同时分配一个主线程“自上而下，自左而右”的去解析执行；</h5><h5 id="二、在解析执行DOM结构时遇到link、img、video…浏览器会开启一个全新线程去加载资源，但不会执行。主线程继续向下执行；"><a href="#二、在解析执行DOM结构时遇到link、img、video…浏览器会开启一个全新线程去加载资源，但不会执行。主线程继续向下执行；" class="headerlink" title="二、在解析执行DOM结构时遇到link、img、video…浏览器会开启一个全新线程去加载资源，但不会执行。主线程继续向下执行；"></a>二、在解析执行DOM结构时遇到<strong>link</strong>、<strong>img</strong>、<strong>video</strong>…浏览器会开启一个全新线程去加载资源，但不会执行。主线程继续向下执行；</h5><ul>
-<li>遇到 <strong>style</strong> 内嵌样式正常解析执行</li>
-<li>@import 导入样式 （同步）不会开辟新线程去加载资源，而是主线程去获取资源并加载完毕才会继续向下继续解析执行DOM </li>
-</ul>
-<h5 id="三、遇到script、外链js会去获取资源并执行，会阻塞DOM生成；优化：使用defer、async去异步获取资源，等dom渲染完执行；"><a href="#三、遇到script、外链js会去获取资源并执行，会阻塞DOM生成；优化：使用defer、async去异步获取资源，等dom渲染完执行；" class="headerlink" title="三、遇到script、外链js会去获取资源并执行，会阻塞DOM生成；优化：使用defer、async去异步获取资源，等dom渲染完执行；"></a>三、遇到<strong>script</strong>、外链js会去获取资源并<strong>执行</strong>，会阻塞DOM生成；优化：使用<strong>defer</strong>、<strong>async</strong>去异步获取资源，等dom渲染完执行；</h5><ul>
-<li>现代浏览器都有完善的代码扫描机制，如果遇到script需要同步加载执行时，同时会向下扫描代码，如果发现有一些异步获取资源代码，此时就开始请求资源了</li>
-<li>自我等待机制：因为在JS中可能会有操作元素样式的情况出现，所以哪怕异步请求的js资源加载完成了，执行js代码也会等到css加载并渲染完成后才会执行</li>
-<li>defer 异步获取资源后，按照顺序去执行</li>
-<li>async 异步获取资源后，执行是无序的，谁先加载回来谁先执行</li>
-<li>DOMContentLoaded() : 当DOM结构加载完成就会触发</li>
-<li>$(function(){})||$(doucment).ready(function(){})</li>
-<li>load() : 所有资源加载完成才会执行，包含图片等资源加载</li>
-</ul>
-<h5 id="四、自上而下执行完毕后，会生成DOM-Tree"><a href="#四、自上而下执行完毕后，会生成DOM-Tree" class="headerlink" title="四、自上而下执行完毕后，会生成DOM Tree"></a>四、自上而下执行完毕后，会生成<strong>DOM Tree</strong></h5><h5 id="五、主线程现在可以去执行加载回来的css资源了，执行完css会生成CSSOM"><a href="#五、主线程现在可以去执行加载回来的css资源了，执行完css会生成CSSOM" class="headerlink" title="五、主线程现在可以去执行加载回来的css资源了，执行完css会生成CSSOM"></a>五、主线程现在可以去执行加载回来的css资源了，执行完css会生成<strong>CSSOM</strong></h5><h5 id="六、将DOM-Tree和CSSOM结合生成Render-Tree-渲染树"><a href="#六、将DOM-Tree和CSSOM结合生成Render-Tree-渲染树" class="headerlink" title="六、将DOM Tree和CSSOM结合生成Render Tree(渲染树)"></a>六、将<strong>DOM Tree</strong>和<strong>CSSOM</strong>结合生成<strong>Render Tree</strong>(渲染树)</h5><h5 id="六、浏览器通知GPU-显卡-开始按照Render-Tree绘制图形到页面中"><a href="#六、浏览器通知GPU-显卡-开始按照Render-Tree绘制图形到页面中" class="headerlink" title="六、浏览器通知GPU(显卡)开始按照Render Tree绘制图形到页面中"></a>六、浏览器通知GPU(显卡)开始按照Render Tree绘制图形到页面中</h5><p><img src="/img/liulanqi/6.png"></p>
-<h4 id="DOM的重绘和回流"><a href="#DOM的重绘和回流" class="headerlink" title="DOM的重绘和回流"></a>DOM的重绘和回流</h4><p><strong>重绘</strong>：元素样式的改变（但宽高、大小、位置等不变）</p>
-<p><strong>回流</strong>：元素的大小或者位置发生了变化，触发重新布局导致渲染树重新计算布局和渲染</p>
-<p><strong>重绘不一定回流，回流一定触发重绘</strong></p>
-
+<h4 id="3、缓存"><a href="#3、缓存" class="headerlink" title="3、缓存"></a>3、缓存</h4><p><img src="/img/xingneng/1.png"></p>
+<p><strong>资源缓存-强缓存和协商缓存</strong><br><img src="/img/xingneng/2.png"><br>    <strong>强缓存</strong><br><img src="/img/xingneng/3.png"><br><img src="/img/xingneng/4.png"><br><img src="/img/xingneng/5.png"><br>    <strong>我们看一下京东是否使用了缓存</strong><br><img src="/img/xingneng/6.png"><br><img src="/img/xingneng/7.png"><br><img src="/img/xingneng/8.png"><br>     <strong>协商缓存</strong><br><img src="/img/xingneng/9.png"><br><img src="/img/xingneng/10.png"><br>    <strong>数据缓存（localStorage ）</strong><br>    <strong>离线缓存 manifest（一般很少用</strong></p>
+<h3 id="网络交互层面的优化-1"><a href="#网络交互层面的优化-1" class="headerlink" title="网络交互层面的优化"></a>网络交互层面的优化</h3><p><img src="/img/xingneng/11.png"></p>
+<h3 id="安全上优化"><a href="#安全上优化" class="headerlink" title="安全上优化"></a>安全上优化</h3><h3 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h3>
             </div>
             <hr/>
 
@@ -552,7 +494,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yanzhuowei.github.io/2020/10/30/liu-lan-qi-xuan-ran-yuan-li/">https://yanzhuowei.github.io/2020/10/30/liu-lan-qi-xuan-ran-yuan-li/</a>
+                    <a href="https://yanzhuowei.github.io/2020/11/10/qian-duan-xiang-mu-xing-neng-you-hua/">https://yanzhuowei.github.io/2020/11/10/qian-duan-xiang-mu-xing-neng-you-hua/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -590,8 +532,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">
-                                    <span class="chip bg-color">浏览器渲染原理</span>
+                                <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                                    <span class="chip bg-color">前端性能优化</span>
                                 </a>
                             
                         </div>
@@ -759,9 +701,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/10/qian-duan-xiang-mu-xing-neng-you-hua/">
                     <div class="card-image">
@@ -779,9 +722,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -794,6 +737,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -809,7 +753,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/10/30/liu-lan-qi-xuan-ran-yuan-li/">
@@ -843,7 +787,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
