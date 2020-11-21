@@ -83,14 +83,14 @@ Number([12]) //12 [12].toString()//'12' Number('12')//12
 
 > 对一段代码的封装，在需要的时候执行；
 
-**创建函数：** 1、function fn(name){....rerun} 2、var fn = function(name){....rerun} 3、(function(name){....rerun})(111)
+**创建函数：** 1、function fn(name){....rerun} 2、var fn = function(name){....rerun} 3、(function(name){....rerun})(111) 、~ffunction(){}()
 > 创建函数时，声明形参 例如：name 需要 return 返回值 **有一个参数arguments：函数内置实参集合 是类数组但不能使用数组的方法**
 > 没有写 return 默认返回值为 undefined
 > 函数体中代码遇到 return 不在向下执行 
 
 **执行函数：** fn(11) 括号中传递的是实参 1、需要使用形参接收，如未接收则自动丢弃 2、未传递，形参默认值为undefined
 
-**函数执行过程：函数时引用类型，存储在堆中；堆中存储的是函数声明时的字符串，当函数执行时，会开辟一块私有栈内存用来执行函数；所以函数内部的变量不能被外部访问，只能return出去；**
+**函数执行过程：函数是引用类型，存储在堆中；堆中存储的是函数声明时的字符串，当函数执行时，会开辟一块私有栈内存用来执行函数；所以函数内部的变量不能被外部访问，只能return出去；**
 
 
 
