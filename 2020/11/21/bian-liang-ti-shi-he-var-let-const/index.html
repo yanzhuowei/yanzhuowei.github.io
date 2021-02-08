@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="作用域、作用域链、闭包, 编程，前端，生活，阅读，电影，游泳，爬山">
+    <meta name="keywords" content="变量提示和var、let、const, 编程，前端，生活，阅读，电影，游泳，爬山">
     <meta name="description" content="心中有梦，眼里有光，脚下有路，未来可期，愿深信不疑！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>作用域、作用域链、闭包 | 暮言</title>
+    <title>变量提示和var、let、const | 暮言</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">作用域、作用域链、闭包</h1>
+                    <h1 class="description center-align post-title">变量提示和var、let、const</h1>
                 </div>
             </div>
         </div>
@@ -410,8 +410,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85/">
-                                <span class="chip bg-color">作用域、闭包</span>
+                            <a href="/tags/%E5%8F%98%E9%87%8F%E6%8F%90%E7%A4%BA%E3%80%81var%E3%80%81let%E3%80%81const/">
+                                <span class="chip bg-color">变量提示、var、let、const</span>
                             </a>
                         
                     </div>
@@ -451,24 +451,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><blockquote>
-<p>函数就是一个方法或者一个功能体，就是把实现某个功能的代码放到一起进行封装;封装：减少页面中的冗余代码，提高代码重复使用率（低耦合高内聚）；</p>
+                <h3 id="变量提示"><a href="#变量提示" class="headerlink" title="变量提示"></a>变量提示</h3><blockquote>
+<p>在当前执行上下文代码执行之前，首先会把带有var或者function关键字的声明或者定义（带var的只会提前声明，带function会提前声明+定义（赋值））import 也有变量提升<br><strong>同名变量和函数，函数会提升到最前边，变量会被忽略</strong><br><strong>同名变量，声明会被提升，后边声明会忽略</strong><br><strong>同名函数会被覆盖</strong></p>
 </blockquote>
 <ul>
-<li>函数分为声明函数和函数执行<ul>
-<li>声明函数：函数存储在堆中，堆中存储的是函数体代码字符串和键值对（例如：arguments:null,length:0 ,name: “fn”…等等；<strong>初始化作用域（创建函数时当前执行上下文存储变量的地方）</strong></li>
-<li>函数执行：1、查找调用函数的代码，开辟一块 <strong>全新的栈内存（函数内部的变量不能被外部访问，只能return出去）</strong> ，建立函数上下文，进栈执行；2、初始化this指向 3、初始化作用域链 4、创建变量对象VO (1、arguments对象 2、创建形参变量并赋值 3、有变量提升话变量提升    ) 5、代码执行</li>
-</ul>
+<li>看一道面试题<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// a函数  </span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>  
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// 1</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 1 </span>
+  <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//  a is not a function</span>
+  <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+  预解析阶段，<span class="token keyword">var</span> 和函数都会被提升，但函数会被提到最前面<span class="token keyword">var</span> a被忽略
+  打印 第一次a   <span class="token comment" spellcheck="true">// a函数  </span>
+  a  为真
+  a<span class="token operator">=</span><span class="token number">1</span>  给a重新赋值为<span class="token number">1</span>   打印第二次a  <span class="token comment" spellcheck="true">// 1</span>
+  函数已经声明定义了不用管
+  第三次打印a   <span class="token comment" spellcheck="true">// 1</span>
+  a（ ）  a调用 但是这是a为<span class="token number">1</span>  报错a is not a <span class="token keyword">function</span>
+</code></pre>
 </li>
 </ul>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><blockquote>
-<p>作用域也就是<strong>创建函数时</strong>当前执行上下文存储变量的地方 <strong>（VO/AO）</strong></p>
+<p>```</p>
+<h3 id="var和let的区别"><a href="#var和let的区别" class="headerlink" title="var和let的区别"></a>var和let的区别</h3><blockquote>
+<p>1、var：有变量提升；let：没有变量提升；<br>2、在全局执行上下文中用var声明一个变量，也会给全局对象GO中（window）增加一个对应的属性；但是用let声明的变量不存在这个特点,不会给全局对象（window）中增加对应属性。<br>3、带var可以重复声明（词法解析可以审核过），带let不可以重复声明（词法解析阶段都过不去）<br>4、let存在块级作用域（var没有）{} 就是一个块级作用域，对象{}除过</p>
 </blockquote>
-<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><blockquote>
-<p>变量取值的过程，先在自己执行上下文中的变量对象中找看是否是自己AO中的私有变量，找不到就去上级作用域查找，有则停止，无就继续，一直找到全局作用域。</p>
-</blockquote>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
-<p><strong>函数执行形成一个全新的执行上下文，进栈执行后所创建的一些变量被外部所引用，不能出栈销毁，就形成了闭包。</strong><br>作用：延长了局部变量的生命周期，保护全不被污染<br>缺点：函数不能被出栈销毁，频繁使用会造成内存泄漏问题。<br>解决方法：手动销毁 fn=null</p>
+<h3 id="let-和-const区别"><a href="#let-和-const区别" class="headerlink" title="let 和 const区别"></a>let 和 const区别</h3><blockquote>
+<p>let（不可重复声明） 创建的变量可以更改指针指向（也就是可以重新赋值），但是const（不可重复声明）声明的变量是不允许改变指针指向的。</p>
 </blockquote>
 
             </div>
@@ -495,7 +508,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yanzhuowei.github.io/2020/11/21/zuo-yong-yu-zuo-yong-yu-lian-bi-bao/">https://yanzhuowei.github.io/2020/11/21/zuo-yong-yu-zuo-yong-yu-lian-bi-bao/</a>
+                    <a href="https://yanzhuowei.github.io/2020/11/21/bian-liang-ti-shi-he-var-let-const/">https://yanzhuowei.github.io/2020/11/21/bian-liang-ti-shi-he-var-let-const/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -533,8 +546,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85/">
-                                    <span class="chip bg-color">作用域、闭包</span>
+                                <a href="/tags/%E5%8F%98%E9%87%8F%E6%8F%90%E7%A4%BA%E3%80%81var%E3%80%81let%E3%80%81const/">
+                                    <span class="chip bg-color">变量提示、var、let、const</span>
                                 </a>
                             
                         </div>
@@ -702,9 +715,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/21/bian-liang-ti-shi-he-var-let-const/">
                     <div class="card-image">
@@ -722,9 +736,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -737,6 +751,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -755,24 +770,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/20/dui-zhan-di-ceng-ji-zhi/">
+                <a href="/2020/11/21/zuo-yong-yu-zuo-yong-yu-lian-bi-bao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="堆栈底层机制">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="作用域、作用域链、闭包">
                         
-                        <span class="card-title">堆栈底层机制</span>
+                        <span class="card-title">作用域、作用域链、闭包</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JavaScript中简单数据类型和引用数据类型在堆栈中存储会是怎么的呢？
+                            作用域、作用域链、闭包的认识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
                             </span>
                         <span class="publish-author">
                             
@@ -789,8 +804,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%A0%86%E6%A0%88%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6/">
-                        <span class="chip bg-color">堆栈存储机制</span>
+                    <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85/">
+                        <span class="chip bg-color">作用域、闭包</span>
                     </a>
                     
                 </div>

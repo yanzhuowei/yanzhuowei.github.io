@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>变量提示和var、let、const</title>
+      <link href="2020/11/21/bian-liang-ti-shi-he-var-let-const/"/>
+      <url>2020/11/21/bian-liang-ti-shi-he-var-let-const/</url>
+      
+        <content type="html"><![CDATA[<h3 id="变量提示"><a href="#变量提示" class="headerlink" title="变量提示"></a>变量提示</h3><blockquote><p>在当前执行上下文代码执行之前，首先会把带有var或者function关键字的声明或者定义（带var的只会提前声明，带function会提前声明+定义（赋值））import 也有变量提升<br><strong>同名变量和函数，函数会提升到最前边，变量会被忽略</strong><br><strong>同名变量，声明会被提升，后边声明会忽略</strong><br><strong>同名函数会被覆盖</strong></p></blockquote><ul><li>看一道面试题<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// a函数  </span>  <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>      <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// 1</span>  <span class="token punctuation">}</span>  <span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 1 </span>  <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//  a is not a function</span>  <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>  预解析阶段，<span class="token keyword">var</span> 和函数都会被提升，但函数会被提到最前面<span class="token keyword">var</span> a被忽略  打印 第一次a   <span class="token comment" spellcheck="true">// a函数  </span>  a  为真  a<span class="token operator">=</span><span class="token number">1</span>  给a重新赋值为<span class="token number">1</span>   打印第二次a  <span class="token comment" spellcheck="true">// 1</span>  函数已经声明定义了不用管  第三次打印a   <span class="token comment" spellcheck="true">// 1</span>  a（ ）  a调用 但是这是a为<span class="token number">1</span>  报错a is not a <span class="token keyword">function</span></code></pre></li></ul><p>```</p><h3 id="var和let的区别"><a href="#var和let的区别" class="headerlink" title="var和let的区别"></a>var和let的区别</h3><blockquote><p>1、var：有变量提升；let：没有变量提升；<br>2、在全局执行上下文中用var声明一个变量，也会给全局对象GO中（window）增加一个对应的属性；但是用let声明的变量不存在这个特点,不会给全局对象（window）中增加对应属性。<br>3、带var可以重复声明（词法解析可以审核过），带let不可以重复声明（词法解析阶段都过不去）<br>4、let存在块级作用域（var没有）{} 就是一个块级作用域，对象{}除过</p></blockquote><h3 id="let-和-const区别"><a href="#let-和-const区别" class="headerlink" title="let 和 const区别"></a>let 和 const区别</h3><blockquote><p>let（不可重复声明） 创建的变量可以更改指针指向（也就是可以重新赋值），但是const（不可重复声明）声明的变量是不允许改变指针指向的。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 变量提示、var、let、const </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>作用域、作用域链、闭包</title>
       <link href="2020/11/21/zuo-yong-yu-zuo-yong-yu-lian-bi-bao/"/>
       <url>2020/11/21/zuo-yong-yu-zuo-yong-yu-lian-bi-bao/</url>
